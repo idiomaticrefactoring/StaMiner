@@ -10,7 +10,32 @@ import java.util.Set;
 
 public class MyVisitor extends ASTVisitor {
     public Groum groum = new Groum();
-    //private boolean inControl = false;
+
+    public static String getNodeName(Node node)
+    {
+        if(node.nodeType == false)
+        {
+            ActionNode actionNode = (ActionNode)node;
+            return actionNode.objectName;
+        }
+        else
+            return getControlName((ControlNode)node);
+    }
+
+    private static String getControlName(ControlNode controlNode)
+    {
+        String name = new String();
+        switch (controlNode.controlNodeType)
+        {
+            case 0:name = "if";break;
+            case 1:name = "switch";break;
+            case 2:name = "while";break;
+            case 3:name = "for";break;
+            default:assert false;
+        }
+        name += controlNode.astNode.hashCode();
+        return name;
+    }
 
     public static Groum parallelMergeGroum(Groum groum,Groum anotherGroum)
     {
@@ -73,6 +98,16 @@ public class MyVisitor extends ASTVisitor {
         return -1;
     }
 
+    public static int getGroumId(ASTNode node,Groum groum)
+    {
+        for(int i = 0;i < groum.Nodes.size();i++)
+            if(groum.Nodes.get(i).astNode == node)
+            {
+                return i;
+            }
+        return -1;
+    }
+
     private int getId(Node node)
     {
         for(int i = 0;i < this.groum.Nodes.size();i++)
@@ -86,7 +121,7 @@ public class MyVisitor extends ASTVisitor {
         return -1;
     }
 
-    private ASTNode getFatherNode(ASTNode node)
+    public static ASTNode getFatherNode(ASTNode node)
     {
         ASTNode parent = node.getParent();
         //判断是否在某个控制块中被解析过

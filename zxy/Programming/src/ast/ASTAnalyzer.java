@@ -76,6 +76,9 @@ public class ASTAnalyzer {
         myVisitor.secondScan();
         myVisitor.displayGroum();
 
+        UsageExtracting usageExtracting = new UsageExtracting(myVisitor.groum);
+        usageExtracting.usageExtracting(2);
+
         // 获取 API 使用序列 （和其在文件中相应的位置）
         //APIClassList = visitor.getAPIClassList();
         //APINameList = visitor.getAPINameList();
