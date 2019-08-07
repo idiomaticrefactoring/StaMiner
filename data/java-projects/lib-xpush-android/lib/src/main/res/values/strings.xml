@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">XpushAndroidLibrary</string>
+
+    <string name="action_search">Search</string>
+    <string name="action_leave">Leave</string>
+    <string name="action_send">Send</string>
+    <string name="prompt_message">Send message</string>
+
+    <string name="error_connect">Failed to connect</string>
+    <plurals name="message_participants">
+        <item quantity="one">there\'s %d participant</item>
+        <item quantity="other">there are %d participants</item>
+    </plurals>
+    <string name="message_user_joined">%s joined</string>
+    <string name="message_user_left">%s left</string>
+    <string name="user_action_typing">is typing</string>
+
+
+    <string name="host_name">http://stalk-front-s01.cloudapp.net:8000</string>
+    <string name="app_id">sample-chat</string>
+    <string name="device_id">android</string>
+    <string name="gcm_defaultSenderId">USER KEY</string>
+
+    <string name="content_provider_authority">io.xpush.chat.persist.xpushcontentprovider</string>
+    <string name="channel_table_name">TB_CHANNEL</string>
+    <string name="message_table_name">TB_MESSAGE</string>
+    <string name="user_table_name">TB_USER</string>
+
+    <string name="no_channel_message">현재 채널이 없습니다.</string>
+    <string name="no_friends_message">현재 친구가 없습니다.</string>
+
+    <string name="action_channel">채널</string>
+
+    <string name="label_search_user">ID or Name</string>
+
+    <string name="action_leave_dialog_title">Confirm</string>
+    <string name="action_leave_dialog_description">Do you want to leave</string>
+
+    <string name="crash_dialog_text">Crahed !!!</string>
+
+    <string name="title_text_group_chatting">Group Chatting</string>
+
+
+    <string name="title_for_image_type">Photo</string>
+    <string name="title_for_image_type_in_channel">Photo received</string>
+</resources>

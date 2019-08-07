@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="EasyVRClassLibrary" />
+        <module name="javafx" />
+        <module name="sampleApp" />
+        <module name="TerminalEmulator" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="EasyVRClassLibrary" target="1.8" />
+      <module name="EasyVRClassLibrary-parent" target="1.5" />
+      <module name="javafx" target="1.5" />
+      <module name="sampleApp" target="1.8" />
+      <module name="TerminalEmulator" target="1.5" />
+      <module name="testart3" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
