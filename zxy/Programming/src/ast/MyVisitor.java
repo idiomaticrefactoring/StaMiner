@@ -13,6 +13,8 @@ public class MyVisitor extends ASTVisitor {
 
     public static String getNodeName(Node node)
     {
+        if(node.nodeName != null)
+            return node.nodeName;
         if(node.nodeType == false)
         {
             ActionNode actionNode = (ActionNode)node;

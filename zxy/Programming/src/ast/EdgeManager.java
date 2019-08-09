@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EdgeManager {
-    private List<Edge> edges = new ArrayList<>();
-    public void addEdge(String a,String b)
+    public List<Edge> edges = new ArrayList<>();
+    public void addEdge(Node a,Node b)
     {
         boolean result = true;
         for(int i = 0;i < this.edges.size();i++)
         {
-            if(this.edges.get(i).nameA.equals(a) && this.edges.get(i).nameB.equals(b))
+            if(this.edges.get(i).A == a && this.edges.get(i).B == b)
             {
                 result = false;
                 break;
@@ -23,11 +23,11 @@ public class EdgeManager {
         }
     }
 
-    public boolean existA(String a)
+    public boolean existA(Node a)
     {
         for(int i = 0;i < this.edges.size();i++)
         {
-            if(this.edges.get(i).nameA.equals(a) || this.edges.get(i).nameB.equals(a))
+            if(this.edges.get(i).A == a || this.edges.get(i).B == a)
                 return true;
         }
         return false;
@@ -37,12 +37,12 @@ public class EdgeManager {
     {
         for(int i = 0;i < edgeManager.edges.size();i++)
         {
-            String nameA = edgeManager.edges.get(i).nameA;
-            String nameB = edgeManager.edges.get(i).nameB;
+            Node nameA = edgeManager.edges.get(i).A;
+            Node nameB = edgeManager.edges.get(i).B;
             boolean result = false;
             for(int j = 0;j < this.edges.size();j++)
             {
-                if(this.edges.get(j).nameA.equals(nameA) && this.edges.get(j).nameB.equals(nameB))
+                if(this.edges.get(j).A == nameA && this.edges.get(j).B == nameB)
                 {
                     result = true;
                     break;
@@ -57,7 +57,7 @@ public class EdgeManager {
     {
         for(int i = 0;i < this.edges.size();i++)
         {
-            System.out.println("[" + this.edges.get(i).nameA + ',' + this.edges.get(i).nameB + "]");
+            System.out.println("[" + MyVisitor.getNodeName(this.edges.get(i).A) + ',' + MyVisitor.getNodeName(this.edges.get(i).B) + "]");
         }
     }
 }

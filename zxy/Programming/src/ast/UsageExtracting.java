@@ -11,6 +11,7 @@ public class UsageExtracting {
     public Groum groum;
     public EdgeManager edgeManager = new EdgeManager();
     public Set<String> variableSet = new HashSet<>();
+    public List<String> variableList;
 
     public UsageExtracting(Groum groum)
     {
@@ -30,12 +31,51 @@ public class UsageExtracting {
         }
     }
 
+    public void sequenceBuilding(int k)
+    {
+        for(int i = 0;i < k;i++)
+        {
+            List<String> result = new ArrayList<>();
+            for(int j = 0;j < this.edgeManager.edges.size();j++)
+            {
+                if(this.edgeManager.edges.get(j).A.nodeType == false)
+                {
+                    ActionNode actionNode = (ActionNode)this.edgeManager.edges.get(j).A;
+                    if(actionNode.className != null && actionNode.className.equals(variableList.get(i)))
+                    {
+                        String displayString;
+                        displayString = actionNode.className + '.' + actionNode.calleeName;
+                        result.add(displayString);
+                    }
+                }
+                if(this.edgeManager.edges.get(j).B.nodeType == false)
+                {
+                    ActionNode actionNode = (ActionNode)this.edgeManager.edges.get(j).B;
+                    if(actionNode.className != null && actionNode.className.equals(variableList.get(i)))
+                    {
+                        String displayString;
+                        displayString = actionNode.className + '.' + actionNode.calleeName;
+                        result.add(displayString);
+                    }
+                }
+            }
+            for(int j = 0;j < result.size();j++)
+            {
+                System.out.print(result.get(j) + ' ');
+            }
+            System.out.println(',');
+        }
+    }
+
     public void usageExtracting(int k)
     {
         initVariableSet();
         //集合A为variableSet的前k个元素
         List<String> A = new ArrayList<>(variableSet);
+        this.variableList = A;
         List<ActionNode> K = new ArrayList<>();
+        if(k > A.size())
+            return;
         for(int i = 0;i < k;i++)
         {
             for(int j = 0;j < groum.Nodes.size();j++)
@@ -53,12 +93,13 @@ public class UsageExtracting {
         }
         for(int i = 0;i < K.size();i++)
         {
-            if(!edgeManager.existA(K.get(i).objectName))
+            if(!edgeManager.existA(K.get(i)))
             {
                 edgeManager.addEdgeManager(Find(K.get(i),A));
             }
         }
         edgeManager.display();
+        sequenceBuilding(k);
     }
 
     private EdgeManager Find(Node a,List<String> A)
@@ -67,9 +108,10 @@ public class UsageExtracting {
         EdgeManager result = new EdgeManager();
         for(int i = 0;i < B.size();i++)
         {
-            String nameA = MyVisitor.getNodeName(a);
-            String nameB = MyVisitor.getNodeName(B.get(i));
+            Node nameA = a;
+            Node nameB = B.get(i);
             result.addEdge(nameA,nameB);
+            /*
             ASTNode father = MyVisitor.getFatherNode(B.get(i).astNode);
             if(father != null)
             {
@@ -82,10 +124,47 @@ public class UsageExtracting {
                         break;
                     }
                 }
-                String nameA2;
-                String nameB2;
+                Node nameA2;
+                Node nameB2;
                 nameA2 = nameB;
-                nameB2 = MyVisitor.getNodeName( this.groum.Nodes.get(MyVisitor.getGroumId(father,this.groum)));
+                nameB2 = this.groum.Nodes.get(MyVisitor.getGroumId(father,this.groum));
+                if(bToC)
+                {
+                    result.addEdge(nameA2,nameB2);
+                }
+                else
+                    result.addEdge(nameB2,nameA2);
+            }
+            */
+            Node nameB2 = null;
+            for(int j = 0;j < this.groum.Nodes.size();j++)
+            {
+                if(this.groum.Nodes.get(j).nodeType)
+                {
+                    ControlNode controlNode = (ControlNode)this.groum.Nodes.get(j);
+                    for(int m = 0;m < controlNode.controlStructure.size();m++)
+                    {
+                        if(controlNode.controlStructure.get(m) == nameB)
+                        {
+                            nameB2 = controlNode;
+                            break;
+                        }
+                    }
+                }
+            }
+            if(nameB2 != null)
+            {
+                boolean bToC = false;
+                for(int j = 0;j < B.get(i).edges.size();j++)
+                {
+                    if(B.get(i).edges.get(j) == nameB2)
+                    {
+                        bToC = true;
+                        break;
+                    }
+                }
+                Node nameA2;
+                nameA2 = nameB;
                 if(bToC)
                 {
                     result.addEdge(nameA2,nameB2);

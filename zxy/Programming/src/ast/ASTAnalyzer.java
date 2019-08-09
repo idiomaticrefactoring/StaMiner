@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.dom.AST;
@@ -74,10 +75,16 @@ public class ASTAnalyzer {
         compUnit.accept(myVisitor);
 
         myVisitor.secondScan();
-        myVisitor.displayGroum();
+        //myVisitor.displayGroum();
 
-        UsageExtracting usageExtracting = new UsageExtracting(myVisitor.groum);
-        usageExtracting.usageExtracting(2);
+        //UsageExtracting usageExtracting = new UsageExtracting(myVisitor.groum);
+        //usageExtracting.usageExtracting(8);
+
+        MyScanner myScanner = new MyScanner();
+        myScanner.Scan("test_save.json");
+
+        UsageExtracting usageExtracting = new UsageExtracting(myScanner.groum);
+        usageExtracting.usageExtracting(12);
 
         // 获取 API 使用序列 （和其在文件中相应的位置）
         //APIClassList = visitor.getAPIClassList();

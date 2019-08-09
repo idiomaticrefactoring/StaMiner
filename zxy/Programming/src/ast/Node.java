@@ -12,4 +12,5 @@ public class Node {
     public boolean nodeType;//false for action node,true for control node
     public List<Node> edges = new ArrayList<>();
     public Set<String> involvedObjects = new HashSet<>();
+    public String nodeName = null;
 }
