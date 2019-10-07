@@ -98,9 +98,9 @@ public class UsageExtracting {
         {
             if(!edgeManager.existA(K.get(i)))
             {
-                System.out.println("find in");
+                //System.out.println("find in");
                 edgeManager.addEdgeManager(Find(K.get(i),A));
-                System.out.println("find out");
+                //System.out.println("find out");
             }
         }
 
@@ -110,7 +110,7 @@ public class UsageExtracting {
 
     private EdgeManager Find(Node a,List<String> A)
     {
-        System.out.println("find begin");
+        //System.out.println("find begin");
         List<Node> B = Get(a,A);
         System.out.println(B);
         EdgeManager result = new EdgeManager();
@@ -185,7 +185,7 @@ public class UsageExtracting {
             result.addEdgeManager(Find(B.get(i),A));
         }
 
-        System.out.println("find end");
+        //System.out.println("find end");
         return result;
     }
 

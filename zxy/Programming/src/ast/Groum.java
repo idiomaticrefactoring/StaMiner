@@ -11,22 +11,50 @@ public class Groum {
     {
         if(this.Nodes.size() == 1)
             return true;
-        Node startNode = this.Nodes.get(0);
-        Stack<Node> stack = new Stack<>();
-        stack.push(startNode);
-        while(!stack.empty())
+        List<Integer> color = new ArrayList<>();
+        for(int i = 0;i < this.Nodes.size();i++)
+            color.add(0);   //white
+        for(int i = 0;i < this.Nodes.size();i++)
         {
-            Node outNode = stack.pop();
-            for(int i = 0;i < outNode.edges.size();i++)
+            if(color.get(i) == 0)
             {
-                if(stack.contains(outNode.edges.get(i)))
+                boolean result = DFS(i,color);
+                if(!result)
                     return false;
-                else
-                {
-                    stack.push(outNode.edges.get(i));
-                }
             }
         }
+        return true;
+    }
+
+    private boolean DFS(int startNode,List<Integer> color)
+    {
+        color.set(startNode,1);     //gray
+        for(int i = 0;i < this.Nodes.get(startNode).edges.size();i++)
+        {
+            int neighbour = -1;
+            for(int j = 0;j < this.Nodes.size();j++)
+            {
+                if(this.Nodes.get(j) == this.Nodes.get(startNode).edges.get(i))
+                {
+                    neighbour = j;
+                    break;
+                }
+            }
+            if(neighbour == -1)
+                assert false;
+            if(color.get(neighbour) == 0)
+            {
+                boolean result = DFS(neighbour,color);
+                if(!result)
+                    return false;
+            }
+            else if(color.get(neighbour) == 1)
+            {
+                //找到BE，成环
+                return false;
+            }
+        }
+        color.set(startNode,2);     //black
         return true;
     }
 }

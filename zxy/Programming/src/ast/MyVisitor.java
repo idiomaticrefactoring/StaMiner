@@ -145,10 +145,10 @@ public class MyVisitor extends ASTVisitor {
     private boolean checkNode2(ASTNode node)
     {
         ASTNode parent = node.getParent();
-        //判断是否为import语句的子语句
+        //判断是否为import或package语句的子语句
         while(parent != null)
         {
-            if (parent.getNodeType() == 26)
+            if (parent.getNodeType() == 26 || parent.getNodeType() == 35)
                 return false;
             parent = parent.getParent();
         }
@@ -259,7 +259,9 @@ public class MyVisitor extends ASTVisitor {
             addAllObjects(actionNode.involvedObjects, results.get(0));
         }
 
-        methodGroum.Nodes.add(actionNode);
+        //判断是否是java api
+        //if(actionNode.className != null && actionNode.className.contains("java."))
+            methodGroum.Nodes.add(actionNode);
 
         //合并
         if(results.size() != 0) {
@@ -319,7 +321,10 @@ public class MyVisitor extends ASTVisitor {
         actionNode.astNode = node;
 
         Groum classGroum = new Groum();
-        classGroum.Nodes.add(actionNode);
+
+        //判断是否是java api
+        //if(actionNode.className != null && actionNode.className.contains("java."))
+            classGroum.Nodes.add(actionNode);
 
         //合并
         if(results.size() != 0) {
@@ -373,6 +378,8 @@ public class MyVisitor extends ASTVisitor {
         return false;
     }
 
+
+
     @Override
     public boolean visit(FieldAccess node)
     {
@@ -417,6 +424,8 @@ public class MyVisitor extends ASTVisitor {
         }
         return true;
     }
+
+
 
 
     @Override
@@ -609,6 +618,7 @@ public class MyVisitor extends ASTVisitor {
         return false;
     }
 
+
     @Override
     public boolean visit(Assignment node)
     {
@@ -636,6 +646,8 @@ public class MyVisitor extends ASTVisitor {
 
         return false;
     }
+
+
 
     public void displayGroum()
     {
