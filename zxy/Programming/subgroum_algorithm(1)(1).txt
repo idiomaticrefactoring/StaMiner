@@ -1,0 +1,41 @@
+json文件中
+vertexs 中 一个顶点 [唯一的顶点名，类名，方法名，是否为控制节点，所有到达控制节点的节点列表 ，所有从控制节点出去的节点列表]
+
+所有到达控制节点的节点列表 ，所有从控制节点出去的节点列表 是仅有控制节点才有
+ActionNode 的这两个节点列表为空
+
+
+任意一个变量代表类名
+任意指定k个变量构成集合A，获得k个变量在顶点集中出现的第一个节点集合K
+PATH //每一元素存放着所有的边
+
+for a in K
+	if a 没有出现在 PATH中
+		PATH=PATH+Find(a)
+	
+	
+	
+
+Find(a)//获得从a节点开始的涉及到k个变量的所有的边
+	获得a的下一个节点在A中的节点集合B=Get(a,A)
+    new path
+	for b in B
+			path=path+[a,b]
+			if b 在某个控制节点c中
+				if b 是到达c的
+					path=path+[b,c]
+				else
+					path=path+[c,b]
+			path=path+Find(b)
+    return path
+			
+			
+			
+			
+Get(a,A)
+	a的所有的下一个节点集合B
+	for b in B
+		if b in A中或者为控制节点：
+			C=C+b
+		else 
+			C=C+Get(b,A)

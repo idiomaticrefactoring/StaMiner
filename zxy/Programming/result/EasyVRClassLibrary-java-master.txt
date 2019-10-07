@@ -1,0 +1,68 @@
+
+**********
+
+路径: /Users/njucszxy/Documents/GitHub/StaMiner/data/java-projects/EasyVRClassLibrary-java-master
+类: java.io.IOException , 共 3次使用
+方法: printStackTrace 3 次
+类: java.lang.System , 共 3次使用
+方法: getProperty 3 次
+类: java.lang.String , 共 3次使用
+方法: format 3 次
+类: java.lang.Class , 共 1次使用
+方法: getResource 1 次
+类: java.net.URL , 共 1次使用
+方法: openStream 1 次
+类: java.lang.Thread , 共 1次使用
+方法: sleep 1 次
+类: java.lang.InterruptedException , 共 1次使用
+方法: printStackTrace 1 次
+类: java.util.Objects , 共 4次使用
+方法: equals 4 次
+类: java.lang.Object , 共 1次使用
+方法: printStackTrace 1 次
+类: java.util.Enumeration , 共 2次使用
+方法: hasMoreElements 1 次
+方法: nextElement 1 次
+类: java.util.List<java.lang.String> , 共 1次使用
+方法: add 1 次
+类: java.io.DataInputStream , 共 1次使用
+方法: read 1 次
+类: java.io.PrintStream , 共 4次使用
+方法: printf 2 次
+方法: println 2 次
+类: java.io.DataOutputStream , 共 2次使用
+方法: write 2 次
+类: java.lang.String , 共 1次使用
+方法: toCharArray 1 次
+类: java.io.IOException , 共 4次使用
+方法: printStackTrace 4 次
+类: java.io.PrintStream , 共 2次使用
+方法: printf 2 次
+类: java.lang.Integer , 共 27次使用
+方法: toString 27 次
+类: java.lang.StringBuilder , 共 9次使用
+方法: append 6 次
+方法: toString 3 次
+类: java.lang.String , 共 3次使用
+方法: toCharArray 2 次
+方法: length 1 次
+类: java.lang.Character , 共 3次使用
+方法: isDigit 2 次
+方法: isLetter 1 次
+类: java.lang.Thread , 共 1次使用
+方法: sleep 1 次
+类: java.lang.InterruptedException , 共 1次使用
+方法: printStackTrace 1 次
+类: java.lang.Exception , 共 1次使用
+方法: printStackTrace 1 次
+类: java.lang.System , 共 3次使用
+方法: getProperty 3 次
+类: java.lang.String , 共 3次使用
+方法: format 3 次
+类: java.lang.Class , 共 1次使用
+方法: getResource 1 次
+类: java.net.URL , 共 1次使用
+方法: openStream 1 次
+
+**********
+

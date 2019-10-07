@@ -1,0 +1,239 @@
+
+**********
+
+路径: /Users/njucszxy/Documents/GitHub/StaMiner/data/java-projects/swipe-android-master
+类: java.util.Map<java.lang.String,java.lang.String> , 共 4次使用
+方法: put 3 次
+方法: get 1 次
+类: java.util.Map<java.lang.String,org.swipe.core.SwipeMarkdown.Element> , 共 12次使用
+方法: put 9 次
+方法: get 2 次
+方法: keySet 1 次
+类: java.util.Iterator<java.lang.String> , 共 4次使用
+方法: hasNext 2 次
+方法: next 2 次
+类: java.lang.Float , 共 1次使用
+方法: isNaN 1 次
+类: java.util.List<java.lang.String> , 共 2次使用
+方法: size 1 次
+方法: get 1 次
+类: java.lang.String , 共 4次使用
+方法: equals 1 次
+方法: indexOf 1 次
+方法: length 1 次
+方法: substring 1 次
+类: java.util.List<org.swipe.core.SwipeMarkdown.Element> , 共 1次使用
+方法: add 1 次
+类: java.util.List<org.swipe.core.SwipePage> , 共 17次使用
+方法: size 9 次
+方法: get 7 次
+方法: add 1 次
+类: java.lang.String , 共 2次使用
+方法: equals 1 次
+方法: isEmpty 1 次
+类: java.util.Iterator<java.lang.String> , 共 2次使用
+方法: hasNext 1 次
+方法: next 1 次
+类: java.util.Map<java.lang.String,org.swipe.core.SwipePageTemplate> , 共 2次使用
+方法: put 1 次
+方法: get 1 次
+类: java.util.List<java.net.URL> , 共 1次使用
+方法: addAll 1 次
+类: java.lang.Math , 共 2次使用
+方法: max 1 次
+方法: min 1 次
+类: java.util.List<java.net.URL> , 共 1次使用
+方法: add 1 次
+类: java.io.IOException , 共 1次使用
+方法: printStackTrace 1 次
+类: java.util.HashMap<java.lang.String,java.util.ArrayList<java.lang.Runnable>> , 共 4次使用
+方法: get 3 次
+方法: put 1 次
+类: java.util.ArrayList<java.lang.Runnable> , 共 2次使用
+方法: add 1 次
+方法: remove 1 次
+类: java.lang.Runnable , 共 1次使用
+方法: run 1 次
+类: java.util.regex.Pattern , 共 4次使用
+方法: compile 2 次
+方法: matcher 2 次
+类: java.lang.Math , 共 2次使用
+方法: atan2 2 次
+类: java.util.List<java.lang.Float> , 共 197次使用
+方法: get 162 次
+方法: size 29 次
+方法: add 6 次
+类: java.util.List<org.swipe.core.SwipePath.SvgCommand> , 共 8次使用
+方法: size 3 次
+方法: get 2 次
+方法: add 3 次
+类: java.lang.String , 共 5次使用
+方法: equals 2 次
+方法: isEmpty 1 次
+方法: substring 2 次
+类: java.util.regex.Matcher , 共 4次使用
+方法: find 2 次
+方法: group 2 次
+类: java.lang.Float , 共 1次使用
+方法: parseFloat 1 次
+类: java.lang.Double , 共 6次使用
+方法: isNaN 3 次
+方法: floatValue 3 次
+类: java.util.List<org.swipe.core.Bitmap> , 共 3次使用
+方法: add 1 次
+方法: size 1 次
+方法: get 1 次
+类: java.lang.Math , 共 1次使用
+方法: min 1 次
+类: java.util.List<org.swipe.core.SwipeObjectAnimator> , 共 38次使用
+方法: addAll 2 次
+方法: size 2 次
+方法: add 34 次
+类: java.lang.Double , 共 70次使用
+方法: isNaN 36 次
+方法: floatValue 34 次
+类: java.io.FileInputStream , 共 1次使用
+方法: close 1 次
+类: java.net.URL , 共 3次使用
+方法: toString 3 次
+类: java.io.IOException , 共 3次使用
+方法: printStackTrace 3 次
+类: java.io.InputStream , 共 2次使用
+方法: close 2 次
+类: java.lang.Float , 共 4次使用
+方法: isNaN 4 次
+类: java.lang.String , 共 2次使用
+方法: equals 1 次
+方法: isEmpty 1 次
+类: java.util.List<SwipeMarkdown.Element> , 共 1次使用
+方法: size 1 次
+类: java.lang.String , 共 8次使用
+方法: equals 8 次
+类: java.io.IOException , 共 1次使用
+方法: printStackTrace 1 次
+类: java.lang.Float , 共 1次使用
+方法: floatValue 1 次
+类: java.lang.String , 共 3次使用
+方法: lastIndexOf 1 次
+方法: length 1 次
+方法: substring 1 次
+类: java.lang.Math , 共 1次使用
+方法: round 1 次
+类: java.lang.StringBuilder , 共 4次使用
+方法: append 3 次
+方法: toString 1 次
+类: java.lang.String , 共 1次使用
+方法: format 1 次
+类: java.util.regex.Pattern , 共 4次使用
+方法: compile 2 次
+方法: matcher 2 次
+类: java.util.regex.Matcher , 共 2次使用
+方法: matches 2 次
+类: java.lang.String , 共 5次使用
+方法: trim 1 次
+方法: replace 1 次
+方法: isEmpty 1 次
+方法: length 1 次
+方法: equals 1 次
+类: java.lang.Float , 共 1次使用
+方法: floatValue 1 次
+类: java.lang.Double , 共 8次使用
+方法: isNaN 3 次
+方法: floatValue 5 次
+类: java.lang.Integer , 共 1次使用
+方法: floatValue 1 次
+类: java.lang.Number , 共 1次使用
+方法: intValue 1 次
+类: java.lang.Long , 共 1次使用
+方法: decode 1 次
+类: java.util.Iterator<java.lang.String> , 共 6次使用
+方法: hasNext 3 次
+方法: next 3 次
+类: java.util.Map<java.lang.String,java.lang.Integer> , 共 2次使用
+方法: put 1 次
+方法: get 1 次
+类: java.util.List<java.lang.String> , 共 2次使用
+方法: add 2 次
+类: java.net.URL , 共 1次使用
+方法: toString 1 次
+类: java.lang.Thread , 共 1次使用
+方法: start 1 次
+类: java.lang.Math , 共 1次使用
+方法: min 1 次
+类: java.io.File , 共 19次使用
+方法: exists 3 次
+方法: isDirectory 4 次
+方法: delete 3 次
+方法: mkdir 1 次
+方法: setLastModified 1 次
+方法: listFiles 2 次
+方法: lastModified 1 次
+方法: getPath 3 次
+方法: length 1 次
+类: java.net.URL , 共 4次使用
+方法: getHost 2 次
+方法: getPath 2 次
+类: java.util.Date , 共 3次使用
+方法: getTime 3 次
+类: java.io.IOException , 共 1次使用
+方法: toString 1 次
+类: java.lang.String , 共 5次使用
+方法: concat 1 次
+方法: lastIndexOf 2 次
+方法: substring 2 次
+类: java.lang.Thread , 共 2次使用
+方法: start 2 次
+类: java.io.File[] , 共 1次使用
+方法: length 1 次
+类: java.util.List<java.net.URL> , 共 1次使用
+方法: size 1 次
+类: java.util.Map<java.net.URL,java.lang.Integer> , 共 2次使用
+方法: containsKey 1 次
+方法: put 1 次
+类: java.util.Map<java.net.URL,java.net.URL> , 共 1次使用
+方法: get 1 次
+类: java.net.URL , 共 1次使用
+方法: toString 1 次
+类: java.net.MalformedURLException , 共 2次使用
+方法: toString 2 次
+类: java.net.URL , 共 2次使用
+方法: toString 1 次
+方法: getProtocol 1 次
+类: java.lang.Thread , 共 1次使用
+方法: start 1 次
+类: java.lang.String , 共 12次使用
+方法: equals 1 次
+方法: lastIndexOf 2 次
+方法: substring 3 次
+方法: equalsIgnoreCase 5 次
+方法: length 1 次
+类: java.io.Reader , 共 1次使用
+方法: read 1 次
+类: java.io.Writer , 共 2次使用
+方法: write 1 次
+方法: toString 1 次
+类: java.io.InputStream , 共 1次使用
+方法: close 1 次
+类: java.io.IOException , 共 1次使用
+方法: toString 1 次
+类: java.lang.String , 共 4次使用
+方法: replace 4 次
+类: java.util.ArrayList<org.swipe.browser.JSONObject> , 共 3次使用
+方法: add 2 次
+方法: size 1 次
+类: java.util.Vector<jp.tomorrowkey.android.gifplayer.GifDecoder.GifFrame> , 共 3次使用
+方法: elementAt 2 次
+方法: addElement 1 次
+类: java.io.InputStream , 共 4次使用
+方法: close 1 次
+方法: read 3 次
+类: java.lang.Exception , 共 2次使用
+方法: printStackTrace 2 次
+类: java.lang.String , 共 2次使用
+方法: equals 1 次
+方法: startsWith 1 次
+类: java.lang.Math , 共 1次使用
+方法: pow 1 次
+
+**********
+

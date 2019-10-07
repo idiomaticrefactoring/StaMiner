@@ -1,0 +1,11 @@
+对github的data/java-projecs/目录下
+
+确定每一个java project中涉及到的 关于Java 类的总使用次数和这个类对应的JavaAPI的使用数目
+
+例子：
+统计swipe-android-master/Library 下的所有.java文件
+
+java.lang.String：10 :  init   5，contains 5
+java.io.File: 2: init 1,read 2
+
+具体存储或者 展示方式可以灵活处理 ，只要可以展示出这样的信息即可

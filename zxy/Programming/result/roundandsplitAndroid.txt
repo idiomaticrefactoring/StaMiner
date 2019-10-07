@@ -1,0 +1,65 @@
+
+**********
+
+路径: /Users/njucszxy/Documents/GitHub/StaMiner/data/java-projects/roundandsplitAndroid
+类: java.io.InputStream , 共 1次使用
+方法: read 1 次
+类: java.io.ByteArrayOutputStream , 共 2次使用
+方法: write 1 次
+方法: toByteArray 1 次
+类: java.nio.charset.Charset , 共 1次使用
+方法: forName 1 次
+类: java.lang.Class , 共 1次使用
+方法: getSimpleName 1 次
+类: java.lang.String , 共 11次使用
+方法: length 6 次
+方法: substring 1 次
+方法: valueOf 1 次
+方法: equals 3 次
+类: java.text.NumberFormat , 共 18次使用
+方法: getPercentInstance 4 次
+方法: setMinimumFractionDigits 4 次
+方法: format 6 次
+方法: getInstance 2 次
+方法: getCurrencyInstance 1 次
+方法: setMaximumFractionDigits 1 次
+类: java.util.List<java.lang.String> , 共 3次使用
+方法: add 3 次
+类: java.math.BigDecimal , 共 2次使用
+方法: divide 1 次
+方法: equals 1 次
+类: java.lang.Math , 共 3次使用
+方法: ceil 1 次
+方法: floor 2 次
+类: java.lang.Class , 共 1次使用
+方法: getSimpleName 1 次
+类: java.util.List<org.lukhnos.roundandsplit.Button> , 共 5次使用
+方法: clear 1 次
+方法: add 1 次
+方法: size 2 次
+方法: get 1 次
+类: java.lang.Math , 共 2次使用
+方法: ceil 2 次
+类: java.util.List<java.lang.String> , 共 1次使用
+方法: size 1 次
+类: java.lang.String , 共 1次使用
+方法: valueOf 1 次
+类: java.util.List<org.lukhnos.roundandsplit.Button> , 共 2次使用
+方法: add 1 次
+方法: get 1 次
+类: java.lang.Math , 共 1次使用
+方法: ceil 1 次
+类: java.math.BigDecimal , 共 18次使用
+方法: subtract 5 次
+方法: divide 1 次
+方法: compareTo 5 次
+方法: add 2 次
+方法: multiply 1 次
+方法: setScale 2 次
+方法: abs 2 次
+类: java.util.List<org.lukhnos.tipping.Tipping.Payment> , 共 3次使用
+方法: add 2 次
+方法: get 1 次
+
+**********
+

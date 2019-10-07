@@ -75,7 +75,10 @@ public class UsageExtracting {
         this.variableList = A;
         List<ActionNode> K = new ArrayList<>();
         if(k > A.size())
-            return;
+        {
+            k = A.size();
+            //return;
+        }
         for(int i = 0;i < k;i++)
         {
             for(int j = 0;j < groum.Nodes.size();j++)
@@ -95,16 +98,21 @@ public class UsageExtracting {
         {
             if(!edgeManager.existA(K.get(i)))
             {
+                System.out.println("find in");
                 edgeManager.addEdgeManager(Find(K.get(i),A));
+                System.out.println("find out");
             }
         }
+
         edgeManager.display();
         sequenceBuilding(k);
     }
 
     private EdgeManager Find(Node a,List<String> A)
     {
+        System.out.println("find begin");
         List<Node> B = Get(a,A);
+        System.out.println(B);
         EdgeManager result = new EdgeManager();
         for(int i = 0;i < B.size();i++)
         {
@@ -151,6 +159,8 @@ public class UsageExtracting {
                         }
                     }
                 }
+                if(nameB2 != null)
+                    break;
             }
             if(nameB2 != null)
             {
@@ -174,6 +184,8 @@ public class UsageExtracting {
             }
             result.addEdgeManager(Find(B.get(i),A));
         }
+
+        System.out.println("find end");
         return result;
     }
 

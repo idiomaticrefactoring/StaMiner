@@ -245,7 +245,9 @@ public class MyVisitor extends ASTVisitor {
             if(node.getExpression().resolveTypeBinding() == null)
                 actionNode.className = null;
             else
-                actionNode.className = node.getExpression().resolveTypeBinding().getName();
+            {
+                actionNode.className = node.getExpression().resolveTypeBinding().getQualifiedName();
+            }
         }
         actionNode.fatherControlNode = getFatherNode(node);
         actionNode.astNode = node;
@@ -381,7 +383,8 @@ public class MyVisitor extends ASTVisitor {
             actionNode.calleeName = node.getName().toString();
             actionNode.objectName = node.getExpression().toString();
             actionNode.involvedObjects.add(actionNode.objectName);
-            actionNode.className = node.getExpression().resolveTypeBinding().getName();
+            if(node.getExpression().resolveTypeBinding() != null)
+                actionNode.className = node.getExpression().resolveTypeBinding().getQualifiedName();
             actionNode.fatherControlNode = getFatherNode(node);
             actionNode.astNode = node;
             Groum actionGroum = new Groum();
@@ -432,7 +435,8 @@ public class MyVisitor extends ASTVisitor {
         //解析expression
         MyVisitor newMyVisitor = new MyVisitor();
         Expression expression = node.getExpression();
-        expression.accept(newMyVisitor);
+        if(expression != null)
+            expression.accept(newMyVisitor);
         Groum expressionGroum = newMyVisitor.groum;
 
         //创建FOR控制节点
@@ -635,6 +639,7 @@ public class MyVisitor extends ASTVisitor {
 
     public void displayGroum()
     {
+        int javaAPI = 0;
         System.out.println("**********\n");
         for(int i = 0;i < this.groum.Nodes.size();i++)
         {
@@ -675,6 +680,9 @@ public class MyVisitor extends ASTVisitor {
                 }
                 System.out.println("内容: " + actionNode.className + '.' + actionNode.calleeName);
                 System.out.println("绑定对象: " + actionNode.objectName);
+
+                if(actionNode.className != null && actionNode.className.contains("java."))
+                    javaAPI++;
             }
 
             //打印边
@@ -688,6 +696,27 @@ public class MyVisitor extends ASTVisitor {
 
             System.out.println("\n**********\n");
         }
+
+        System.out.println("共有" + javaAPI + "个JAVA API");
+    }
+
+    public Statistic getGroumStatistic(String path)
+    {
+        Statistic statistic = new Statistic();
+        statistic.javaFileName = path;
+        for(int i = 0;i < this.groum.Nodes.size();i++)
+        {
+            if(!this.groum.Nodes.get(i).nodeType)
+            {
+                ActionNode actionNode = (ActionNode)this.groum.Nodes.get(i);
+                int position = statistic.existClass(actionNode.className);
+                if(position != -2)
+                {
+                    statistic.addMethod(position,actionNode.className,actionNode.calleeName);
+                }
+            }
+        }
+        return statistic;
     }
 
     public void secondScan()

@@ -1,9 +1,6 @@
 package ast;
 
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +12,7 @@ import org.eclipse.jdt.core.dom.ASTParser;
 
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.CompilationUnit;
+import org.json.simple.JSONObject;
 
 /**
  * Create AST parser with respect to each java file.
@@ -32,16 +30,12 @@ public class ASTAnalyzer {
     private String[] sources = {"/Library/Java/JavaVirtualMachines/jdk1.8.0_201.jdk/Contents/Home/src"};
     private String[] classpath = {"/Library/Java/JavaVirtualMachines/jdk1.8.0_201.jdk/Contents/Home/jre/lib/rt.jar"};
 
-
-    public List<String> APIClassList = new ArrayList<>();
-    public List<String> APINameList = new ArrayList<>();
-
     /**
      * 从一个Java文件中提取相关信息
      *
      * @param path 一个Java文件的路径
      */
-    public void extractInfoFormAST(String path) {
+    public MyVisitor3 extractInfoFormAST(String path) {
 
         // 读取源码文件内容
         byte[] input = null;
@@ -67,42 +61,98 @@ public class ASTAnalyzer {
         astParser.setUnitName("any_name");
         CompilationUnit compUnit = (CompilationUnit) (astParser.createAST(null)); // 编译单元
 
-        //System.out.println(compUnit);
-
         // 建立AST访问器
         ASTNodeVisitor visitor = new ASTNodeVisitor();
-        MyVisitor myVisitor = new MyVisitor();
+        MyVisitor3 myVisitor = new MyVisitor3();
+        //MyVisitor2 myVisitor = new MyVisitor2();
+        //MyVisitor3 myVisitor = new MyVisitor3();
         compUnit.accept(myVisitor);
 
-        myVisitor.secondScan();
+        //myVisitor.secondScan();
+        return myVisitor;
         //myVisitor.displayGroum();
 
+        //if(!myVisitor.groum.isValid())
+        //{
+        //    System.out.println("invalid groum");
+        //    assert false;
+        //}
+
         //UsageExtracting usageExtracting = new UsageExtracting(myVisitor.groum);
-        //usageExtracting.usageExtracting(8);
+        //usageExtracting.usageExtracting(5);
 
-        MyScanner myScanner = new MyScanner();
-        myScanner.Scan("test_save.json");
+        //MyScanner myScanner = new MyScanner();
+        //myScanner.Scan("test_save.json");
 
-        UsageExtracting usageExtracting = new UsageExtracting(myScanner.groum);
-        usageExtracting.usageExtracting(12);
+        //UsageExtracting usageExtracting = new UsageExtracting(myScanner.groum);
+        //usageExtracting.usageExtracting(12);
 
-        // 获取 API 使用序列 （和其在文件中相应的位置）
-        //APIClassList = visitor.getAPIClassList();
-        //APINameList = visitor.getAPINameList();
     }
 
-    /**
-     * 显示获取的API信息
-     */
-    public void display() {
-        for (int i = 0; i < APIClassList.size(); i++)
-            System.out.println(APIClassList.get(i) + ": " + APINameList.get(i));
+    public static List<String> getAllObjectFileName(String path)
+    {
+        File file = new File(path);
+        File[] fileList = file.listFiles();
+        List<String> nameList = new ArrayList<>();
+        if(fileList == null)
+            return nameList;
+        for(int i = 0;i < fileList.length;i++)
+        {
+            if(fileList[i].isFile() && fileList[i].getName().contains(".java"))
+            {
+                nameList.add(fileList[i].getAbsolutePath());
+            }
+            if(fileList[i].isDirectory())
+            {
+                List<String> subList = getAllObjectFileName(fileList[i].getAbsolutePath());
+                nameList.addAll(subList);
+            }
+        }
+        return nameList;
     }
 
     public static void main(String[] args) {
+
+        try {
+            PrintStream ps = new PrintStream(new FileOutputStream("result/antlr_java.json"));
+            System.setOut(ps);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+
         ASTAnalyzer analyzer = new ASTAnalyzer();
-        String testFilePath = "src/ast/MyTest.java";
-        analyzer.extractInfoFormAST(testFilePath);  // 提取API信息
-        //analyzer.display();             // 显示API信息
+        String rootPath = "/Users/njucszxy/Documents/GitHub/StaMiner/data/java-projects/antlr_java";
+        List<String> filePaths = getAllObjectFileName(rootPath);
+        //Statistic result = new Statistic();
+        //result.javaFileName = rootPath;
+
+        //System.out.println("test");
+        //System.out.println("\\/");
+
+        JSONObject result = new JSONObject();
+
+        for(int i = 0;i < filePaths.size();i++)
+        {
+            //Statistic temp = analyzer.extractInfoFormAST(filePaths.get(i));  // 提取API信息
+            File file = new File(filePaths.get(i));
+            String fileName = file.getName();
+            int pointAt = fileName.indexOf('.');
+            String className = fileName.substring(0,pointAt);
+            JSONObject jsonObject = analyzer.extractInfoFormAST(filePaths.get(i)).displayJson(className);
+            result.put(className,jsonObject);
+            //analyzer.extractInfoFormAST(filePaths.get(i)).display(className);
+            //result.addStatistic(temp);
+
+            //if(!className.equals("Array2DHashSet"))
+            //    continue;
+            //System.out.println("**********");
+            //System.out.println(className);
+            //analyzer.extractInfoFormAST(filePaths.get(i));
+            //System.out.println("**********");
+        }
+        System.out.println(result);
     }
 }
