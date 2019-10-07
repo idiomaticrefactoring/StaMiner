@@ -1,6 +1,8 @@
 package ast;
 
 import org.eclipse.jdt.core.dom.*;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 
 import java.util.ArrayList;
@@ -10,6 +12,7 @@ import java.util.Set;
 
 public class MyVisitor extends ASTVisitor {
     public Groum groum = new Groum();
+    public JSONObject classJson = new JSONObject();
 
     public static String getNodeName(Node node)
     {
@@ -207,6 +210,81 @@ public class MyVisitor extends ASTVisitor {
 
         //添加到主groum上
         this.groum = MyVisitor.sequentialMergeGroum(this.groum, finalGroum);
+
+        return false;
+    }
+
+    @Override
+    public boolean visit(MethodDeclaration node)
+    {
+        //获得groum
+        MyVisitor newMyvisitor = new MyVisitor();
+        if(node.getBody() != null)
+        {
+            node.getBody().accept(newMyvisitor);
+            newMyvisitor.secondScan();
+        }
+        Groum result = newMyvisitor.groum;
+
+        //后续操作
+        if(!result.isValid())
+            assert false;
+
+        JSONObject methodJson = new JSONObject();
+        JSONObject edgesJson = new JSONObject();
+        for(int i = 0;i < result.Nodes.size();i++)
+        {
+            Node tempNode = result.Nodes.get(i);
+            for(int j = 0;j < tempNode.edges.size();j++)
+            {
+                methodJson.put(getNodeName(tempNode),getNodeName(tempNode.edges.get(j)));
+            }
+        }
+        methodJson.put("edges",edgesJson);
+
+        JSONArray vertxsJson = new JSONArray();
+        for(int i = 0;i < result.Nodes.size();i++)
+        {
+            JSONArray singleJson = new JSONArray();
+            singleJson.add(getNodeName(result.Nodes.get(i)));
+            if(result.Nodes.get(i).nodeType)
+            {
+                ControlNode controlNode = (ControlNode)result.Nodes.get(i);
+                String name;
+                switch (controlNode.controlNodeType)
+                {
+                    case 0:name = "IF";break;
+                    case 1:name = "SWITCH";break;
+                    case 2:name = "WHILE";break;
+                    case 3:name = "FOR";break;
+                    default:name = "null";assert false;
+                }
+                singleJson.add(name);
+                singleJson.add(true);
+            }
+            else
+            {
+                ActionNode actionNode = (ActionNode)result.Nodes.get(i);
+                String name = "";
+                if(actionNode.className == null)
+                    name += "null";
+                else
+                    name += actionNode.className;
+                name += '.';
+                if(actionNode.calleeName == null)
+                    name += "null";
+                else
+                    name += actionNode.calleeName;
+                singleJson.add(name);
+                singleJson.add(false);
+            }
+            vertxsJson.add(singleJson);
+        }
+        methodJson.put("vertxs",vertxsJson);
+        this.classJson.put(node.getName(),methodJson);
+
+        //获得api sequence
+
 
         return false;
     }

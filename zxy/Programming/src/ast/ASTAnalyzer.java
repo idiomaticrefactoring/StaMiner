@@ -35,7 +35,7 @@ public class ASTAnalyzer {
      *
      * @param path 一个Java文件的路径
      */
-    public void extractInfoFormAST(String path) {
+    public JSONObject extractInfoFormAST(String path) {
 
         // 读取源码文件内容
         byte[] input = null;
@@ -68,18 +68,18 @@ public class ASTAnalyzer {
         //MyVisitor3 myVisitor = new MyVisitor3();
         compUnit.accept(myVisitor);
 
-        myVisitor.secondScan();
-        //return myVisitor;
-        myVisitor.displayGroum();
+        //myVisitor.secondScan();
+        return myVisitor.classJson;
+        //myVisitor.displayGroum();
 
-        if(!myVisitor.groum.isValid())
-        {
-            System.out.println("invalid groum");
-            assert false;
-        }
+        //if(!myVisitor.groum.isValid())
+        //{
+        //    System.out.println("invalid groum");
+        //    assert false;
+        //}
 
-        UsageExtracting usageExtracting = new UsageExtracting(myVisitor.groum);
-        usageExtracting.usageExtracting(5);
+        //UsageExtracting usageExtracting = new UsageExtracting(myVisitor.groum);
+        //usageExtracting.usageExtracting(5);
 
         //MyScanner myScanner = new MyScanner();
         //myScanner.Scan("test_save.json");
@@ -113,6 +113,16 @@ public class ASTAnalyzer {
 
     public static void main(String[] args) {
 
+
+        try {
+            PrintStream ps = new PrintStream(new FileOutputStream("result/antlr_java.json"));
+            System.setOut(ps);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
         ASTAnalyzer analyzer = new ASTAnalyzer();
         String rootPath = "/Users/njucszxy/Documents/GitHub/StaMiner/data/java-projects/antlr_java";
         List<String> filePaths = getAllObjectFileName(rootPath);
@@ -120,7 +130,7 @@ public class ASTAnalyzer {
         //result.javaFileName = rootPath;
 
 
-        //JSONObject result = new JSONObject();
+        JSONObject result = new JSONObject();
 
         for(int i = 0;i < filePaths.size();i++)
         {
@@ -134,22 +144,14 @@ public class ASTAnalyzer {
             //analyzer.extractInfoFormAST(filePaths.get(i)).displayJson(className);
             //result.addStatistic(temp);
 
-            try {
-                PrintStream ps = new PrintStream(new FileOutputStream("result/antlr_java/" + className + ".txt"));
-                System.setOut(ps);
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
-
             //if(className.equals("Utils") || className.equals("Array2DHashSet") || className.equals("IntervalSet"))
             //    continue;
-            System.out.println("**********");
-            System.out.println(className);
-            analyzer.extractInfoFormAST(filePaths.get(i));
-            System.out.println("**********");
+            //System.out.println("**********");
+            //System.out.println(className);
+            JSONObject classJson = analyzer.extractInfoFormAST(filePaths.get(i));
+            result.put(className,classJson);
+            //System.out.println("**********");
         }
-        //System.out.println(result);
+        System.out.println(result);
     }
 }
