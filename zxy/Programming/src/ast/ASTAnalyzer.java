@@ -115,7 +115,7 @@ public class ASTAnalyzer {
 
 
         try {
-            PrintStream ps = new PrintStream(new FileOutputStream("result/antlr_java.json"));
+            PrintStream ps = new PrintStream(new FileOutputStream("result/swipe-android-master.json"));
             System.setOut(ps);
         }
         catch (Exception e)
@@ -124,7 +124,7 @@ public class ASTAnalyzer {
         }
 
         ASTAnalyzer analyzer = new ASTAnalyzer();
-        String rootPath = "/Users/njucszxy/Documents/GitHub/StaMiner/data/java-projects/antlr_java";
+        String rootPath = "/Users/njucszxy/Documents/GitHub/StaMiner/data/java-projects/swipe-android-master";
         List<String> filePaths = getAllObjectFileName(rootPath);
         //Statistic result = new Statistic();
         //result.javaFileName = rootPath;

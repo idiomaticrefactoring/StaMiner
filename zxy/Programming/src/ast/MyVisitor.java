@@ -21,7 +21,7 @@ public class MyVisitor extends ASTVisitor {
         if(node.nodeType == false)
         {
             ActionNode actionNode = (ActionNode)node;
-            return actionNode.objectName;
+            return actionNode.objectName + actionNode.astNode.hashCode();
         }
         else
             return getControlName((ControlNode)node);
@@ -231,13 +231,16 @@ public class MyVisitor extends ASTVisitor {
             assert false;
 
         JSONObject methodJson = new JSONObject();
-        JSONObject edgesJson = new JSONObject();
+        JSONArray edgesJson = new JSONArray();
         for(int i = 0;i < result.Nodes.size();i++)
         {
             Node tempNode = result.Nodes.get(i);
             for(int j = 0;j < tempNode.edges.size();j++)
             {
-                methodJson.put(getNodeName(tempNode),getNodeName(tempNode.edges.get(j)));
+                JSONArray singleJson = new JSONArray();
+                singleJson.add(getNodeName(tempNode));
+                singleJson.add(getNodeName(tempNode.edges.get(j)));
+                edgesJson.add(singleJson);
             }
         }
         methodJson.put("edges",edgesJson);
